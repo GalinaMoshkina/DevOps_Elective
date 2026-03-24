@@ -10,7 +10,8 @@
 ```(base) gala@gala-NMH-WDX9:~/Documents/DevopsElective/lab1$ sudo tar -xzvf alpine-minirootfs-3.23.3-x86_64.tar.gz -C ./alpine_base```    
 <img width="924" height="526" alt="image" src="https://github.com/user-attachments/assets/372ccf24-ffd9-4d5e-b246-41f35dc8232a" />   
 Все отлично, база готова.   
-Создаем config.json - конфигурационный файл   
+Создаем ```config.json``` - конфигурационный файл   
+В качестве нижнего слоя у меня базовая файловая система Alpine.   
 ```
 {
   "command": "/bin/sh",
@@ -18,3 +19,8 @@
   "lowerdir": "alpine_base"
 }
 ```
+Перейдем к написанию ```box.py```. Задачи скрипта:   
+1. Парсинг данных   
+2. OverlayFS   
+3. Namespaces   
+4. Запуск утилиты   
