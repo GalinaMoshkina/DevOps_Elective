@@ -24,3 +24,20 @@
 2. OverlayFS   
 3. Namespaces   
 4. Запуск утилиты   
+   
+Для начала напишем программу для создания необходимых папок для контейнеров - сформируем OverlayFS   
+```
+import os
+
+
+def preparation(id):
+    location = f"/var/lib/box/{id}"
+    os.makedirs(f"{location}/upper", exist_ok=True)
+    os.makedirs(f"{location}/work", exist_ok=True)
+    os.makedirs(f"{location}/merged", exist_ok=True)
+    return f"{location}/upper", f"{location}/work", f"{location}/merged"
+
+preparation("test1")
+```
+<img width="633" height="142" alt="image" src="https://github.com/user-attachments/assets/db9489ff-7c41-4ef7-acfb-fc233e9f4351" />   
+Работает!   
