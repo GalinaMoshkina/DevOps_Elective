@@ -25,7 +25,8 @@
 3. Namespaces   
 4. Запуск утилиты   
    
-Для начала напишем программу для создания необходимых папок для контейнеров - сформируем OverlayFS  
+Для начала напишем программу для создания необходимых папок для контейнеров - сформируем OverlayFS.  
+В /var/lib/box будут храниться все контейнеры, а вних уже будут создаваться нужные папки для OverlayFS: upper, work, merged.  
 ```
 import os
 
@@ -43,3 +44,31 @@ preparation("test1")
 <img width="633" height="142" alt="image" src="https://github.com/user-attachments/assets/db9489ff-7c41-4ef7-acfb-fc233e9f4351" />  
   
 Работает!  
+Далее переходим к созданию namespaces  
+```
+import os
+import ctypes
+
+
+CLONE_NEWUTS = 0x04000000
+CLONE_NEWNS  = 0x00020000
+CLONE_NEWPID = 0x20000000
+libc = ctypes.CDLL("libc.so.6")
+
+
+def preparation(id):
+    location = f"/var/lib/box/{id}"
+    os.makedirs(f"{location}/upper", exist_ok=True)
+    os.makedirs(f"{location}/work", exist_ok=True)
+    os.makedirs(f"{location}/merged", exist_ok=True)
+    return f"{location}/upper", f"{location}/work", f"{location}/merged"
+
+
+def create_namespace():
+    flags = CLONE_NEWUTS | CLONE_NEWNS | CLONE_NEWPID
+    if lib.unshare(flags) != 0:
+        raise Exception("Failed to create namespace")
+    return flags
+```
+CLONE_NEW[...] - флажки/числовые идентификаторы. ctypes.CDLL("libc.so.6") загружает системный файл, в котором реализованы функции unshare, mount, fork и другие.  
+
