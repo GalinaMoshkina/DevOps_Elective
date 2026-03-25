@@ -39,5 +39,5 @@ def preparation(id):
 
 preparation("test1")
 ```
-<img width="633" height="142" alt="image" src="https://github.com/user-attachments/assets/db9489ff-7c41-4ef7-acfb-fc233e9f4351" />   
+<img width="633" height="142" alt="image" src="https://github.com/user-attachments/assets/db9489ff-7c41-4ef7-acfb-fc233e9f4351" />      
 Работает!   
