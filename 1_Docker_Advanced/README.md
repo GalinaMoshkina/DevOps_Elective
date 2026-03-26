@@ -76,7 +76,7 @@ def create_namespace():
         raise Exception("Failed to create namespace")
     return flags
 ```
-CLONE_NEW[...] - флажки/числовые идентификаторы. ctypes.CDLL("libc.so.6") загружает системный файл, в котором реализованы функции unshare, mount, fork и другие.  
+```CLONE_NEW[...]``` - флажки/числовые идентификаторы. ```ctypes.CDLL("libc.so.6")``` загружает системный файл, в котором реализованы функции unshare, mount, fork и другие.  
   
 Реализуем функцию **mount_overlay**  
 ```
