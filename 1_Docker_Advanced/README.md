@@ -17,7 +17,7 @@
 ```
 {
   "command": "/bin/sh",
-  "hostname": "box-container",
+  "hostname": "hostname",
   "lowerdir": "/home/gala/Documents/DevopsElective/lab1/alpine_base"
 }
 ```
