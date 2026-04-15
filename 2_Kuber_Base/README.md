@@ -115,8 +115,10 @@ data:
 <img width="1323" height="426" alt="image" src="https://github.com/user-attachments/assets/ca3e9441-b3f0-4b25-bbc4-4cbd5258af8f" />  
 поменяем количество `replicaCount` и апгрейднем helm  
 <img width="1331" height="533" alt="image" src="https://github.com/user-attachments/assets/4ea17f50-87ab-46d2-92a2-e3e3b3323218" />  
+Изменения видны, ура!  
 
 Видео, которое помогло разобраться более подробно со структурой kubernetes:  
 https://www.youtube.com/watch?v=TwyhnBDOHPw&t=1191s  
 
+<img width="1200" height="1023" alt="image" src="https://github.com/user-attachments/assets/bafbdc71-78c6-4642-b467-dae32d362513" />  
 
