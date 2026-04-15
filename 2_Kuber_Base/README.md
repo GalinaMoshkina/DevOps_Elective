@@ -14,7 +14,7 @@ kuberctl
 Видно etcd БД, controller manager, scheduler, api server  
 <img width="1843" height="987" alt="image" src="https://github.com/user-attachments/assets/c1dbfd34-a6a7-4654-9498-c90a67b4dc66" />  
 
-Перейдем к написанию ```deployment.yaml```. Во первых, в kubernetis всё общение происходит через API, сл-но, указываем ```apiVersion```
+Перейдем к написанию `deployment.yaml`. Во первых, в kubernetis всё общение происходит через API, сл-но, указываем ```apiVersion```
 
 
 
