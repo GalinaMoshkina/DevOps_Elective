@@ -1,0 +1,23 @@
+replicaCount: 2
+
+image:
+  repository: nginx
+  tag: "1.28.3"
+  pullPolicy: IfNotPresent
+
+app:
+  name: nginx
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+
+htmlContent: |-
+    <!DOCTYPE html>
+    <html>
+    <head><title>Lab</title></head>
+    <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+      <h1>Hello world</h1>
+    </body>
+    </html>
