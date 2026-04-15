@@ -53,7 +53,7 @@ spec:
           - key: index.html
             path: index.html
 ```
-
+Управляет жизненным циклом подов. В spec.replicas: 3 я указала, что хочу запустить три копии приложения для обеспечения отказоустойчивости. Секция selector.matchLabels определяет, какие поды принадлежат этому деплойменту - они должны иметь метку app: nginx. В template описывается шаблон пода: те же метки для связи с селектором, и в spec.containers - описание контейнера. Образ nginx:1.28.3 берётся из публичного реестра, контейнер слушает порт 80. Ключевой момент - подключение ConfigMap через volumes: volumeMounts указывает, куда внутри контейнера примонтировать данные (/usr/share/nginx/html), а секция volumes связывает это с ConfigMap nginx-html. Благодаря readOnly true файл нельзя изменить из контейнера, что повышает безопасность.
 service.yaml
 ```
 apiVersion: v1
@@ -69,7 +69,8 @@ spec:
     protocol: TCP
   type: NodePort
 ```
-
+Обеспечивает сетевой доступ к подам. selector: app: nginx находит все поды с этой меткой и балансирует трафик между ними. port: 80 - порт самого сервиса, targetPort: 80 - порт внутри пода. type: NodePort открывает доступ снаружи кластера: Minikube выделяет случайный порт на хосте, и запросы на http://172.17.0.2:32630 перенаправляются на поды.
+  
 configmap.yaml
 ```
 apiVersion: v1
@@ -86,7 +87,7 @@ data:
     </body>
     </html>
 ```
-
+Это способ хранить конфигурационные данные отдельно от кода приложения. В моём случае я вынесла html код главной страницы в `configmap` с именем `nginx-html`. ApiVersion: v1 указывает версию API, kind: ConfigMap говорит, что это ресурс типа ConfigMap, в metadata задаётся имя, а в секции data хранятся сами данные. Ключ index.html содержит многострочный текст с html разметкой, где  `|` сохраняет переносы строк
 
 Запуск!
 
@@ -108,7 +109,7 @@ data:
 РАБОТАЕЕЕЕТ!!!  
 <img width="1847" height="980" alt="image" src="https://github.com/user-attachments/assets/95ceec90-66b2-4635-a623-9ce8f9afb64e" />  
 <img width="941" height="1049" alt="image" src="https://github.com/user-attachments/assets/ce8cf22f-5d04-4097-bdd1-a2ed8677a149" />  
-
+Дальше вторая часть - helm. Для начала я обновила прошлые yaml файлы для того, чтобы можно было настраивать только один файл values.yaml, а остальные не требовались в редакции - то есть подставлялисть просто переменные в файлы.  
 <img width="1323" height="426" alt="image" src="https://github.com/user-attachments/assets/010cd491-89f4-4242-a967-a4b8e9c220f3" />  
 <img width="1323" height="426" alt="image" src="https://github.com/user-attachments/assets/ca3e9441-b3f0-4b25-bbc4-4cbd5258af8f" />  
 поменяем количество `replicaCount` и апгрейднем helm  
