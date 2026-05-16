@@ -31,7 +31,7 @@ openstack service list
 ```  
 <img width="696" height="61" alt="image" src="https://github.com/user-attachments/assets/9f79ec45-65a4-413f-8a87-f39d3e9676d6" />  
 <img width="736" height="740" alt="image" src="https://github.com/user-attachments/assets/69f51b9e-8f2b-4404-8b7d-39d5044b4348" />  
-<img width="736" height="740" alt="image" src="https://github.com/user-attachments/assets/72817c60-501e-4649-8708-7f2a35124b70" />  
+  
 Проверяем логи  
 ```
 stack@gala-NMH-WDX9:~/devstack$ /opt/stack/logs/worlddump-2026-05-16-195704.txt
